@@ -1,196 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PENGENBUAT TIMER</title>
     <style>
-      /* CSS is unchanged */
-      @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+        /* All CSS stays within the HTML file for simplicity */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 
-      body {
-        background-color: #2c3e50;
-        font-family: 'Roboto Mono', monospace;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        color: #ecf0f1;
-      }
-
-      .timer-container {
-        background-color: #34495e;
-        padding: 40px;
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        text-align: center;
-        width: 90%;
-        max-width: 500px;
-      }
-
-      h1 {
-        margin-top: 0;
-        color: #1abc9c;
-        font-weight: 700;
-      }
-
-      #timer-display {
-        font-size: 5rem;
-        font-weight: 700;
-        margin: 20px 0;
-        color: #ffffff;
-        text-shadow: 0 0 10px rgba(26, 188, 156, 0.5);
-      }
-
-      .button-group {
-        margin-bottom: 20px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-      }
-
-      button {
-        background-color: #1abc9c;
-        color: #fff;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-size: 1rem;
-        font-family: 'Roboto Mono', monospace;
-        cursor: pointer;
-        transition: background-color 0.3s, transform 0.1s;
-      }
-
-      button:hover {
-        background-color: #16a085;
-      }
-
-      button:active {
-        transform: scale(0.98);
-      }
-
-      .control-buttons button#startBtn {
-        background-color: #2ecc71; /* Green */
-      }
-      .control-buttons button#startBtn:hover {
-        background-color: #27ae60;
-      }
-
-      .control-buttons button#pauseBtn {
-        background-color: #f39c12; /* Orange */
-      }
-      .control-buttons button#pauseBtn:hover {
-        background-color: #e67e22;
-      }
-
-      .control-buttons button#resetBtn {
-        background-color: #e74c3c; /* Red */
-      }
-      .control-buttons button#resetBtn:hover {
-        background-color: #c0392b;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="timer-container">
-      <h1>PENGENBUAT TIMER</h1>
-
-      <div id="timer-display">15:00</div>
-
-      <div class="button-group preset-buttons">
-        <button id="btn15min">15 Min</button>
-        <button id="btn1hour">1 Hour</button>
-        <button id="btn1min">1 Min</button>
-        <button id="btn10sec">10 Sec</button>
-      </div>
-
-      <div class="button-group control-buttons">
-        <button id="startBtn">▶ Start</button>
-        <button id="pauseBtn">❚❚ Pause</button>
-        <button id="resetBtn">■ Reset</button>
-      </div>
-    </div>
-
-    <script>
-      // --- CORRECTED and IMPROVED JavaScript ---
-
-      // --- Get Elements ---
-      const timerDisplay = document.getElementById('timer-display');
-      const startBtn = document.getElementById('startBtn');
-      const pauseBtn = document.getElementById('pauseBtn');
-      const resetBtn = document.getElementById('resetBtn');
-
-      // Preset buttons
-      const btn15min = document.getElementById('btn15min');
-      const btn1hour = document.getElementById('btn1hour');
-      const btn1min = document.getElementById('btn1min');
-      const btn10sec = document.getElementById('btn10sec');
-
-      // --- State Variables ---
-      let timerInterval = null;
-      let totalSeconds = 15 * 60;
-      let originalSeconds = 15 * 60;
-      let isRunning = false; // Use a more direct state variable
-
-      // --- Event Listeners ---
-      startBtn.addEventListener('click', startTimer);
-      pauseBtn.addEventListener('click', pauseTimer);
-      resetBtn.addEventListener('click', resetTimer);
-
-      btn15min.addEventListener('click', () => setTime(15 * 60));
-      btn1hour.addEventListener('click', () => setTime(60 * 60));
-      btn1min.addEventListener('click', () => setTime(60));
-      btn10sec.addEventListener('click', () => setTime(10));
-
-      // --- Functions ---
-      function updateDisplay() {
-        const minutes = Math.floor(totalSeconds / 60);
-        const seconds = totalSeconds % 60;
-        const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds
-          .toString()
-          .padStart(2, '0')}`;
-        timerDisplay.textContent = formattedTime;
-        document.title = `${formattedTime} - Timer`;
-      }
-
-      function setTime(seconds) {
-        pauseTimer();
-        totalSeconds = seconds;
-        originalSeconds = seconds;
-        updateDisplay();
-      }
-
-      function startTimer() {
-        if (isRunning || totalSeconds <= 0) {
-          return; // Don't do anything if it's already running or time is up
+        body {
+            background-color: #2c3e50;
+            font-family: 'Roboto Mono', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #ecf0f1;
         }
-        isRunning = true;
-        timerInterval = setInterval(() => {
-          totalSeconds--;
-          updateDisplay();
-          if (totalSeconds <= 0) {
-            pauseTimer();
-            alert("Time's up!");
-            document.title = "Time's Up!";
-          }
-        }, 1000);
-      }
-
-      function pauseTimer() {
-        clearInterval(timerInterval);
-        isRunning = false;
-      }
-
-      function resetTimer() {
-        pauseTimer();
-        totalSeconds = originalSeconds;
-        updateDisplay();
-      }
-
-      // Initialize display on page load
-      updateDisplay();
-    </script>
-  </body>
-</html>
+        .timer-container {
+            background-color: #34495e;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+        }
+        h1 {
+            margin-top: 0;
+            color: #1abc9c;
+            font-weight: 700;
+        }
+        #timer-display {
+            font-size: 5rem;
+            font-weight: 700;
+            margin: 20px 0;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(26, 188, 156, 0.5);
+        }
+        .button-group {
+            margin
