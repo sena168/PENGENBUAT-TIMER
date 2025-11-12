@@ -94,3 +94,87 @@ function resetTimer() {
 
 // Initialize display on page load
 updateDisplay();
+
+// Theme menu functionality
+const themeMenuBtn = document.getElementById('themeMenuBtn');
+const themeDropdown = document.getElementById('themeDropdown');
+const themeOptions = document.querySelectorAll('.theme-option');
+
+// Toggle theme dropdown
+themeMenuBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  themeDropdown.classList.toggle('show');
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+  if (!themeMenuBtn.contains(e.target) && !themeDropdown.contains(e.target)) {
+    themeDropdown.classList.remove('show');
+  }
+});
+
+// Apply theme when option is clicked
+themeOptions.forEach((option) => {
+  option.addEventListener('click', () => {
+    const theme = option.getAttribute('data-theme');
+
+    // Apply theme to root element
+    document.documentElement.setAttribute('data-theme', theme);
+
+    // Close dropdown after selection
+    themeDropdown.classList.remove('show');
+
+    // Save selected theme to localStorage
+    localStorage.setItem('timer-theme', theme);
+  });
+});
+
+// Load saved theme on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('timer-theme') || 'ocean-deep';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
+  // Initialize random title on page load
+  updateRandomTitle();
+});
+
+// Array of possible titles
+const possibleTitles = [
+  'PENGENBUAT',
+  'RASA-YANGPERNAHADA',
+  'SEMENJAK-DULUKALA',
+  'PENGENTAPI-BELUMKESAMPAIAN',
+  'INILAH',
+  'MUNGKIN',
+  'ISENGISENG',
+  'HASRATYANG-TERWUJUD',
+  'ADALAH',
+  'HANYALAH-SEBUAH',
+  'INI',
+  'BENARKAH?',
+  'YUKS',
+  'KALAU-INI',
+  'TIMERNYA',
+  'BEGITULAH',
+];
+
+// Function to get a random title
+function getRandomTitle() {
+  const randomIndex = Math.floor(Math.random() * possibleTitles.length);
+  return possibleTitles[randomIndex];
+}
+
+// Function to update the title
+function updateRandomTitle() {
+  const dynamicTitleElement = document.getElementById('dynamic-title');
+  if (dynamicTitleElement) {
+    const currentTitleText = dynamicTitleElement.textContent;
+    // Extract the second part of the title (e.g., "TIMER") to keep it
+    const titleParts = currentTitleText.split(' ');
+    const newFirstPart = getRandomTitle();
+    dynamicTitleElement.textContent = `${newFirstPart} ${titleParts[1]}`;
+  }
+}
+
+// Set interval to change title every 5 minutes (300,000 milliseconds)
+setInterval(updateRandomTitle, 300000);
