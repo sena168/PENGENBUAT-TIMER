@@ -3,7 +3,7 @@ const randomTitleConfig = {
   // Array of possible titles
   possibleTitles: [
     'PENGENBUAT',
-    'RASA-YANGPERNAHADA',
+    'RASAYANG-PERNAHADA',
     'SEMENJAK-DULUKALA',
     'PENGENTAPI-BELUMKESAMPAIAN',
     'INILAH',
@@ -18,16 +18,24 @@ const randomTitleConfig = {
     'KALAU-INI',
     'TIMERNYA',
     'BEGITULAH',
+    'LUPANAMA-INGATRASA',
+    'MASIHINGATKAH-PADAKU',
+    'SEANDAINYA-WAKTUITU',
+    'INIDULU-CURHATBELAKANGAN',
+    'OTEWE',
+    'KENAPA-YA',
+    'SULIT-MELUPAKAN',
+    '',
   ],
-  
+
   // Update interval in milliseconds (5 minutes)
   updateInterval: 300000,
-  
+
   // Function to get a random title
-  getRandomTitle: function() {
+  getRandomTitle: function () {
     const randomIndex = Math.floor(Math.random() * this.possibleTitles.length);
     return this.possibleTitles[randomIndex];
-  }
+  },
 };
 
 // Export for use in other modules (if using modules)
