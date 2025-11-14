@@ -160,25 +160,27 @@ function updateCurrentThemeIndicators(currentTheme) {
   }
 }
 
-// Array of possible titles
-const possibleTitles = [
-  'PENGENBUAT',
-  'RASA-YANGPERNAHADA',
-  'SEMENJAK-DULUKALA',
-  'PENGENTAPI-BELUMKESAMPAIAN',
-  'INILAH',
-  'MUNGKIN',
-  'ISENGISENG',
-  'HASRATYANG-TERWUJUD',
-  'ADALAH',
-  'HANYALAH-SEBUAH',
-  'INI',
-  'BENARKAH?',
-  'YUKS',
-  'KALAU-INI',
-  'TIMERNYA',
-  'BEGITULAH',
-];
+// Use the external config if available, otherwise default to the array
+const possibleTitles = (typeof randomTitleConfig !== 'undefined' && randomTitleConfig.possibleTitles)
+  ? randomTitleConfig.possibleTitles
+  : [
+      'PENGENBUAT',
+      'RASA-YANGPERNAHADA',
+      'SEMENJAK-DULUKALA',
+      'PENGENTAPI-BELUMKESAMPAIAN',
+      'INILAH',
+      'MUNGKIN',
+      'ISENGISENG',
+      'HASRATYANG-TERWUJUD',
+      'ADALAH',
+      'HANYALAH-SEBUAH',
+      'INI',
+      'BENARKAH?',
+      'YUKS',
+      'KALAU-INI',
+      'TIMERNYA',
+      'BEGITULAH',
+    ];
 
 // Function to get a random title
 function getRandomTitle() {
@@ -198,5 +200,8 @@ function updateRandomTitle() {
   }
 }
 
-// Set interval to change title every 5 minutes (300,000 milliseconds)
-setInterval(updateRandomTitle, 300000);
+// Set interval to change title based on external config (default to 5 minutes if not available)
+const updateInterval = (typeof randomTitleConfig !== 'undefined' && randomTitleConfig.updateInterval)
+  ? randomTitleConfig.updateInterval
+  : 300000; // 5 minutes in milliseconds
+setInterval(updateRandomTitle, updateInterval);

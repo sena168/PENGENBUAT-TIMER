@@ -1,4 +1,6 @@
-externals
+externals/*
+!externals/random-title-config.js
+!externals/random-title-data.md
 # Dependencies
 node_modules/
 bower_components/
