@@ -1,0 +1,428 @@
+/* All CSS for the timer application */
+
+/* All CSS stays within the HTML file for simplicity */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@600&family=Audiowide&family=Exo+2:wght@400;60&family=Rajdhani:wght@600&family=Sora:wght@400;600&family=Poppins:wght@400;600&family=Inter:wght@400;600&family=Nosifer&family=Creepster&family=Playfair+Display:wght@700&family=Nunito:wght@400;700&family=El+Messiri:wght@600&family=Cairo:wght@400;700&family=Questrial&family=Rubik:wght@400;600&family=Baloo+2:wght@700&family=Orbitron:wght@700&family=Comfortaa:wght@700&family=Nunito+Sans:wght@400;700&display=swap');
+
+body {
+    background-color: #2c3e50;
+    font-family: 'Roboto Mono', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: #ecf0f1;
+}
+.timer-container {
+    background-color: #34495e;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+}
+h1 {
+    margin-top: 0;
+    color: #1abc9c;
+    font-weight: 700;
+}
+#timer-display {
+    font-size: 5rem;
+    font-weight: 700;
+    margin: 20px 0;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(26, 188, 156, 0.5);
+}
+.button-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+button {
+    background-color: #1abc9c;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Roboto Mono', monospace;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+button:hover {
+    background-color: #16a085;
+}
+button:active {
+    transform: scale(0.98);
+}
+
+/* --- NEW STYLES for custom input --- */
+.custom-input-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.custom-input-group input {
+    width: 80px;
+    padding: 10px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    border: 2px solid #1abc9c;
+    border-radius: 8px;
+}
+/* Removes arrows from number input in Chrome/Safari */
+.custom-input-group input::-webkit-outer-spin-button,
+.custom-input-group input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#setCustomBtn {
+    background-color: #3498db; /* Blue */
+}
+#setCustomBtn:hover {
+    background-color: #2980b9;
+}
+/* --- END NEW STYLES --- */
+
+.control-buttons button#startBtn { background-color: #2ecc71; }
+.control-buttons button#startBtn:hover { background-color: #27ae60; }
+.control-buttons button#pauseBtn { background-color: #f39c12; }
+.control-buttons button#pauseBtn:hover { background-color: #e67e22; }
+.control-buttons button#resetBtn { background-color: #e74c3c; }
+.control-buttons button#resetBtn:hover { background-color: #c0392b; }
+
+/* Theme menu button */
+.theme-menu-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* Theme dropdown menu */
+.theme-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 15px;
+    background-color: var(--surface);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0.3);
+    width: 220px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 99;
+    border: 1px solid var(--border);
+}
+
+.theme-dropdown.show {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.theme-option {
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text); /* Ensure text color is applied */
+}
+
+.theme-option:last-child {
+    border-bottom: none;
+}
+
+.theme-option:hover {
+    background-color: color-mix(in srgb, var(--primary) 20%, transparent);
+}
+
+/* Theme CSS variables (from ChatGPT's suggestions) */
+:root {
+    --bg: #2c3e50; /* Default Ocean Deep */
+    --surface: #34495e;
+    --text: #ecf0f1;
+    --muted: #9fb3c8;
+    --digit: #ffffff;
+    --primary: #1abc9c;
+    --chip: #1fc9a1;
+    --info: #4aa3ff;
+    --warning: #f5a623;
+    --danger: #f55f5f;
+    --border: #3b4c60;
+    --display-font: 'Roboto Mono', monospace;
+    --ui-font: 'Roboto Mono', monospace;
+}
+
+/* Ocean Deep Theme (Current) */
+[data-theme="ocean-deep"] {
+    --bg: #2c3e50;
+    --surface: #34495e;
+    --text: #ecf0f1;
+    --muted: #9fb3c8;
+    --digit: #ffffff;
+    --primary: #1abc9c;
+    --chip: #1fc9a1;
+    --info: #4aa3ff;
+    --warning: #f5a623;
+    --danger: #f55f5f;
+    --border: #3b4c60;
+    --display-font: 'Audiowide', system-ui;
+    --ui-font: 'Exo 2', system-ui;
+}
+
+/* Graphite Glow Theme (Recommended) */
+[data-theme="graphite-glow"] {
+    --bg: #111418;
+    --surface: #1A1F24;
+    --text: #E6EAF0;
+    --muted: #98A2B3;
+    --digit: #FFFFFF;
+    --primary: #16A34A;
+    --chip: #0EA5E9;
+    --info: #60A5FA;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    --border: #2A2F36;
+    --display-font: 'Rajdhani', system-ui;
+    --ui-font: 'Sora', system-ui;
+}
+
+/* Paper Fresh Theme (Light) */
+[data-theme="paper-fresh"] {
+    --bg: #F7FAFC;
+    --surface: #FFFFFF;
+    --text: #0F172A;
+    --muted: #64748B;
+    --digit: #111827;
+    --primary: #10B981;
+    --chip: #06B6D4;
+    --info: #2563EB;
+    --warning: #D97706;
+    --danger: #DC2626;
+    --border: #E5E7EB;
+    --display-font: 'Poppins', system-ui;
+    --ui-font: 'Inter', system-ui;
+}
+
+/* Pumpkin Night Theme (Halloween) */
+[data-theme="pumpkin-night"] {
+    --bg: #0E0A14;
+    --surface: #1B1025;
+    --text: #F8F4E7;
+    --muted: #C3B7A1;
+    --digit: #FFFFFF;
+    --primary: #FF7A00;
+    --chip: #8CF218;
+    --info: #7C3AED;
+    --warning: #F59E0B;
+    --danger: #FF3B3B;
+    --border: #2A1A35;
+    --display-font: 'Nosifer', system-ui; /* dripping-blood look */
+    --ui-font: 'Inter', system-ui;
+}
+
+/* Holly Berry Theme (Christmas) */
+[data-theme="holly-berry"] {
+    --bg: #0C1B12;
+    --surface: #123524;
+    --text: #F1FAF5;
+    --muted: #C7E5D4;
+    --digit: #FFFFFF;
+    --primary: #22C55E;
+    --chip: #E11D48;
+    --info: #38BDF8;
+    --warning: #FBBF24;
+    --danger: #EF4444;
+    --border: #1F4D34;
+    --display-font: 'Playfair Display', system-ui;
+    --ui-font: 'Nunito', system-ui;
+}
+
+/* Crescent Night Theme (Ramadhan) */
+[data-theme="crescent-night"] {
+    --bg: #0B1226;
+    --surface: #0F1B3D;
+    --text: #F8F6E7;
+    --muted: #C5C0A5;
+    --digit: #FFEFAE;
+    --primary: #D4AF37;
+    --chip: #21B6A8;
+    --info: #60A5FA;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    --border: #1B2A4A;
+    --display-font: 'El Messiri', system-ui;
+    --ui-font: 'Cairo', system-ui;
+}
+
+/* Seafoam Wave Theme (Ocean) */
+[data-theme="seafoam-wave"] {
+    --bg: #082A3A;
+    --surface: #0E3A4B;
+    --text: #E6F9FF;
+    --muted: #B6D6E2;
+    --digit: #FFFFFF;
+    --primary: #20C997;
+    --chip: #2DD4BF;
+    --info: #38BDF8;
+    --warning: #FBBF24;
+    --danger: #FB7185;
+    --border: #144B5E;
+    --display-font: 'Questrial', system-ui;
+    --ui-font: 'Rubik', system-ui;
+}
+
+/* Mochi Pastel Theme */
+[data-theme="mochi-pastel"] {
+    --bg: #FAFBFF;
+    --surface: #FFFFFF;
+    --text: #1F2937;
+    --muted: #6B7280;
+    --digit: #111827;
+    --primary: #A3E635;
+    --chip: #F0ABFC;
+    --info: #93C5FD;
+    --warning: #FCD34D;
+    --danger: #FCA5A5;
+    --border: #E5E7EB;
+    --display-font: 'Baloo 2', system-ui;
+    --ui-font: 'Poppins', system-ui;
+}
+
+/* Enhanced Mochi Pastel Theme for better contrast in dropdown menu */
+[data-theme="mochi-pastel"] .theme-dropdown {
+    background-color: #F0F0FF !important;  /* Slightly darker background for dropdown */
+}
+
+[data-theme="mochi-pastel"] .theme-option {
+    color: #1F2937 !important;      /* Dark text for options */
+}
+
+[data-theme="mochi-pastel"] .theme-option:hover {
+    background-color: #E6E6FF !important;  /* Visible hover state */
+}
+
+/* Neo Cyber Theme (Cyberpunk) */
+[data-theme="neo-cyber"] {
+    --bg: #070314;
+    --surface: #0D0A1A;
+    --text: #EDEAFF;
+    --muted: #BDB8E6;
+    --digit: #FFFFFF;
+    --primary: #9DFF00;
+    --chip: #00E5FF;
+    --info: #7C3AED;
+    --warning: #FFB800;
+    --danger: #FF3D5A;
+    --border: #1A1430;
+    --display-font: 'Orbitron', system-ui;
+    --ui-font: 'Exo 2', system-ui;
+}
+
+/* Lantana Bloom Theme (Flower) */
+[data-theme="lantana-bloom"] {
+    --bg: #1F2E1E;
+    --surface: #334C33;
+    --text: #EDE9E8;
+    --muted: #A5C6A9;
+    --digit: #EDE9E8;
+    --primary: #DAB0D9;
+    --chip: #ECD765;
+    --info: #6A9069;
+    --warning: #95A56A;
+    --danger: #D0A99F;
+    --border: #485F38;
+    --display-font: 'Comfortaa', system-ui;
+    --ui-font: 'Nunito Sans', system-ui;
+}
+
+/* Apply theme variables to elements */
+body {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+.timer-container {
+    background-color: var(--surface);
+    color: var(--text);
+}
+
+#timer-display {
+    color: var(--digit);
+    text-shadow: 0 0 10px rgba(26, 188, 156, 0.5);
+}
+
+button {
+    background-color: var(--primary);
+    color: var(--text);
+    border: 2px solid var(--border);
+}
+
+button:hover {
+    background-color: color-mix(in srgb, var(--primary) 90%, white 10%);
+}
+
+#setCustomBtn {
+    background-color: var(--info);
+}
+
+#setCustomBtn:hover {
+    background-color: color-mix(in srgb, var(--info) 90%, white 10%);
+}
+
+.control-buttons button#startBtn {
+    background-color: var(--primary);
+}
+.control-buttons button#startBtn:hover {
+    background-color: color-mix(in srgb, var(--primary) 90%, white 10%);
+}
+.control-buttons button#pauseBtn {
+    background-color: var(--warning);
+}
+.control-buttons button#pauseBtn:hover {
+    background-color: color-mix(in srgb, var(--warning) 90%, white 10%);
+}
+.control-buttons button#resetBtn {
+    background-color: var(--danger);
+}
+.control-buttons button#resetBtn:hover {
+    background-color: color-mix(in srgb, var(--danger) 90%, white 10%);
+}
+
+.custom-input-group input {
+    background-color: color-mix(in srgb, var(--surface) 80%, black 20%);
+    color: var(--text);
+    border: 2px solid var(--primary);
+}
