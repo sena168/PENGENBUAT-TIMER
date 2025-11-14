@@ -29,15 +29,7 @@ do not use credentials as global always use per project as I might be running mu
 
 B UNFINISHED PROMPTS:
 
-1. error happened last time when updating the finished and unfinished prompt. check again all these prompts and confirm they are done before moving to C finished section
-1. ✅ check why app doesnt work
-2. ✅ in the mochi pastel theme, the color change menu itself become hard to see asthe text it is very similar to the background color change to visible colors
-3. ✅ the first option of the theme color always has the (current) text on it even if its not the current color, remove that text (current) so as not to confuse
-4. ✅ recheck if git credentials are according to the external-notes.md
-5. ✅ create a separate file especially for the randomly changing title list, so I can modify easily without disturbing the main file
-6. ✅ move the formatting into a css file
-7. ✅ move logics into a js file
-8. ✅ checkout if all transmigration are done well
+
 
 C FINISHED PROMPT:
 
@@ -47,3 +39,13 @@ C FINISHED PROMPT:
 4. ✅ possible titles: "RASAYANG-PERNAHADA", "SEMENJAK-DULUKALA", "PENGENTAPI-BELUM KESAMPAIAN", "INILAH", "MUNGKIN", "ISENGISENG", "MIMPIYANG-DIWUJUDKAN"
 5. ✅ Add some other possible timer name in the same line of theme
 6. ✅ make the name change randomly every 5 minutes when the site kept open.
+7. ✅ check why app doesnt work
+8. ✅ in the mochi pastel theme, the color change menu itself become hard to see asthe text it is very similar to the background color change to visible colors
+9. ✅ the first option of the theme color always has the (current) text on it even if its not the current color, remove that text (current) so as not to confuse
+10. ✅ recheck if git credentials are according to the external-notes.md
+11. ✅ create a separate file especially for the randomly changing title list, so I can modify easily without disturbing the main file
+12. ✅ move the formatting into a css file
+13. ✅ move logics into a js file
+14. ✅ checkout if all transmigration are done well
+15. ✅ I've update the random-title with some addition, add them to the app
+16. ✅ move the random-title file that will be essential to the app out of externals folder so they will be pushed and deployed
