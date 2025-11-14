@@ -1,6 +1,7 @@
 externals/*
 !externals/random-title-config.js
 !externals/random-title-data.md
+!externals/prompt-list.md
 index2.html
 # Dependencies
 node_modules/
