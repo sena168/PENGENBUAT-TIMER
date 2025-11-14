@@ -126,6 +126,9 @@ themeOptions.forEach((option) => {
 
     // Save selected theme to localStorage
     localStorage.setItem('timer-theme', theme);
+
+    // Update current theme indicators
+    updateCurrentThemeIndicators(theme);
   });
 });
 
@@ -136,7 +139,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize random title on page load
   updateRandomTitle();
+
+  // Update current theme indicators after page loads
+  updateCurrentThemeIndicators(savedTheme);
 });
+
+// Function to update current theme indicators
+function updateCurrentThemeIndicators(currentTheme) {
+  // Remove "(Current)" from all options
+  themeOptions.forEach(option => {
+    const originalText = option.textContent.replace(' (Current)', '');
+    option.textContent = originalText;
+  });
+
+  // Add "(Current)" to the selected theme
+  const currentThemeOption = document.querySelector(`.theme-option[data-theme="${currentTheme}"]`);
+  if (currentThemeOption) {
+    const originalText = currentThemeOption.textContent;
+    currentThemeOption.textContent = `${originalText} (Current)`;
+  }
+}
 
 // Array of possible titles
 const possibleTitles = [

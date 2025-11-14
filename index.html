@@ -1,84 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PENGENBUAT TIMER</title>
-    <style>
-        /* All CSS stays within the HTML file for simplicity */
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 
-        body {
-            background-color: #2c3e50;
-            font-family: 'Roboto Mono', monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            color: #ecf0f1;
-        }
-        .timer-container {
-            background-color: #34495e;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            width: 90%;
-            max-width: 500px;
-        }
-        h1 {
-            margin-top: 0;
-            color: #1abc9c;
-            font-weight: 700;
-        }
-        #timer-display {
-            font-size: 5rem;
-            font-weight: 700;
-            margin: 20px 0;
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(26, 188, 156, 0.5);
-        }
-        .button-group {
-            margin-bottom: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-        button {
-            background-color: #1abc9c;
-            color: #fff;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: 'Roboto Mono', monospace;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.1s;
-        }
-        button:hover {
-            background-color: #16a085;
-        }
-        button:active {
-            transform: scale(0.98);
-        }
-
-        /* --- NEW STYLES for custom input --- */
-        .custom-input-group {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .custom-input-group input {
-            width: 80px;
-            padding: 10px;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 1.2rem;
-            text-align: center;
-            background-color: #2c3e50;
             color: #ecf0f1;
             border: 2px solid #1abc9c;
             border-radius: 8px;
@@ -133,7 +53,7 @@
             position: absolute;
             top: 60px;
             right: 15px;
-            background-color: #2c3e50;
+            background-color: var(--surface);
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0.3);
             width: 220px;
@@ -143,7 +63,7 @@
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 99;
-            border: 1px solid rgba(26, 188, 156, 0.3);
+            border: 1px solid var(--border);
         }
 
         .theme-dropdown.show {
@@ -156,11 +76,12 @@
             padding: 12px 15px;
             cursor: pointer;
             transition: background-color 0.2s;
-            border-bottom: 1px solid rgba(25, 255, 255, 0.1);
+            border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
             font-size: 0.9rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            color: var(--text); /* Ensure text color is applied */
         }
 
         .theme-option:last-child {
@@ -168,7 +89,7 @@
         }
 
         .theme-option:hover {
-            background-color: rgba(26, 188, 156, 0.2);
+            background-color: color-mix(in srgb, var(--primary) 20%, transparent);
         }
 
         /* Theme CSS variables (from ChatGPT's suggestions) */
@@ -201,6 +122,8 @@
             --warning: #f5a623;
             --danger: #f55f5f;
             --border: #3b4c60;
+            --display-font: 'Audiowide', system-ui;
+            --ui-font: 'Exo 2', system-ui;
         }
 
         /* Graphite Glow Theme (Recommended) */
@@ -216,6 +139,9 @@
             --warning: #F59E0B;
             --danger: #EF4444;
             --border: #2A2F36;
+            --display-font: 'Rajdhani', system-ui;
+                --ui-font: 'Sora', system-ui;
+            }
         }
 
         /* Paper Fresh Theme (Light) */
@@ -231,6 +157,9 @@
             --warning: #D97706;
             --danger: #DC2626;
             --border: #E5E7EB;
+            --display-font: 'Poppins', system-ui;
+                --ui-font: 'Inter', system-ui;
+            }
         }
 
         /* Pumpkin Night Theme (Halloween) */
@@ -246,6 +175,9 @@
             --warning: #F59E0B;
             --danger: #FF3B3B;
             --border: #2A1A35;
+            --display-font: 'Nosifer', system-ui; /* dripping-blood look */
+                --ui-font: 'Inter', system-ui;
+            }
         }
 
         /* Holly Berry Theme (Christmas) */
@@ -261,6 +193,9 @@
             --warning: #FBBF24;
             --danger: #EF4444;
             --border: #1F4D34;
+            --display-font: 'Playfair Display', system-ui;
+                --ui-font: 'Nunito', system-ui;
+            }
         }
 
         /* Crescent Night Theme (Ramadhan) */
@@ -276,6 +211,9 @@
             --warning: #F59E0B;
             --danger: #EF4444;
             --border: #1B2A4A;
+            --display-font: 'El Messiri', system-ui;
+                --ui-font: 'Cairo', system-ui;
+            }
         }
 
         /* Seafoam Wave Theme (Ocean) */
@@ -291,6 +229,9 @@
             --warning: #FBBF24;
             --danger: #FB7185;
             --border: #144B5E;
+            --display-font: 'Questrial', system-ui;
+                --ui-font: 'Rubik', system-ui;
+            }
         }
 
         /* Mochi Pastel Theme */
@@ -306,6 +247,21 @@
             --warning: #FCD34D;
             --danger: #FCA5A5;
             --border: #E5E7EB;
+            --display-font: 'Baloo 2', system-ui;
+            --ui-font: 'Poppins', system-ui;
+        }
+
+        /* Enhanced Mochi Pastel Theme for better contrast in dropdown menu */
+        [data-theme="mochi-pastel"] .theme-dropdown {
+            background-color: #F0F0FF !important;  /* Slightly darker background for dropdown */
+        }
+
+        [data-theme="mochi-pastel"] .theme-option {
+            color: #1F2937 !important;      /* Dark text for options */
+        }
+
+        [data-theme="mochi-pastel"] .theme-option:hover {
+            background-color: #E6E6FF !important;  /* Visible hover state */
         }
 
         /* Neo Cyber Theme (Cyberpunk) */
@@ -321,6 +277,9 @@
             --warning: #FFB800;
             --danger: #FF3D5A;
             --border: #1A1430;
+            --display-font: 'Orbitron', system-ui;
+                --ui-font: 'Exo 2', system-ui;
+            }
         }
 
         /* Lantana Bloom Theme (Flower) */
@@ -336,6 +295,9 @@
             --warning: #95A56A;
             --danger: #D0A99F;
             --border: #485F38;
+            --display-font: 'Comfortaa', system-ui;
+                --ui-font: 'Nunito Sans', system-ui;
+            }
         }
 
         /* Apply theme variables to elements */
@@ -408,7 +370,7 @@
         
         <!-- Theme dropdown menu -->
         <div id="themeDropdown" class="theme-dropdown">
-            <div class="theme-option" data-theme="ocean-deep">Ocean Deep (Current)</div>
+            <div class="theme-option" data-theme="ocean-deep">Ocean Deep</div>
             <div class="theme-option" data-theme="graphite-glow">Graphite Glow (Recommended)</div>
             <div class="theme-option" data-theme="paper-fresh">Paper Fresh (Light)</div>
             <div class="theme-option" data-theme="pumpkin-night">Pumpkin Night (Halloween)</div>
