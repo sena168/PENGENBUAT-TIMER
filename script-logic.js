@@ -10,11 +10,22 @@ const btn1hour = document.getElementById('btn1hour');
 const btn1min = document.getElementById('btn1min');
 const btn10sec = document.getElementById('btn10sec');
 
+// Custom timer input elements
+const hoursInput = document.getElementById('hoursInput');
+const minutesInput = document.getElementById('minutesInput');
+const setCustomBtn = document.getElementById('setCustomBtn');
+
 // --- State Variables ---
 let timerInterval = null;
 let totalSeconds = 15 * 60; // Default time
 let originalSeconds = 15 * 60;
 let isRunning = false;
+
+// Add 10-minute button event listener (only if the button exists in HTML)
+const btn10min = document.getElementById('btn10min');
+if (btn10min) {
+    btn10min.addEventListener('click', () => setTime(10 * 60));
+}
 
 // --- Event Listeners to connect buttons to functions ---
 startBtn.addEventListener('click', startTimer);
@@ -25,6 +36,9 @@ btn15min.addEventListener('click', () => setTime(15 * 60));
 btn1hour.addEventListener('click', () => setTime(60 * 60));
 btn1min.addEventListener('click', () => setTime(60));
 btn10sec.addEventListener('click', () => setTime(10));
+
+// Custom timer event listener
+setCustomBtn.addEventListener('click', setCustomTime);
 
 // --- Core Functions ---
 
@@ -51,7 +65,33 @@ function setTime(seconds) {
   totalSeconds = seconds;
   originalSeconds = seconds;
   updateDisplay();
-}
+  }
+  
+  /**
+   * Sets a custom time from input fields.
+   */
+  function setCustomTime() {
+    const hours = parseInt(hoursInput.value) || 0;
+    const minutes = parseInt(minutesInput.value) || 0;
+    
+    // Validate inputs
+    if (hours < 0 || minutes < 0 || minutes > 59) {
+      alert("Please enter valid time values (hours ≥ 0, minutes 0-59)");
+      return;
+    }
+    
+    const newTotalSeconds = (hours * 3600) + (minutes * 60);
+    
+    if (newTotalSeconds === 0) {
+      alert("Please enter a time greater than 0");
+      return;
+    }
+    
+    pauseTimer(); // Stop any running timer
+      totalSeconds = newTotalSeconds;
+      originalSeconds = newTotalSeconds;
+      updateDisplay();
+    }
 
 /**
  * Starts the countdown.
@@ -200,8 +240,8 @@ function updateRandomTitle() {
   }
 }
 
-// Set interval to change title based on external config (default to 5 minutes if not available)
+// Set interval to change title based on external config (default to 1 minute if not available)
 const updateInterval = (typeof randomTitleConfig !== 'undefined' && randomTitleConfig.updateInterval)
   ? randomTitleConfig.updateInterval
-  : 300000; // 5 minutes in milliseconds
+  : 60000; // 1 minute in milliseconds
 setInterval(updateRandomTitle, updateInterval);

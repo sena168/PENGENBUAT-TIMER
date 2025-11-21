@@ -7,7 +7,7 @@ A customizable timer application with multiple themes and dynamic title function
 - **Multiple Timer Presets**: 10 seconds, 1 minute, 15 minutes, and 1 hour presets
 - **Custom Timer**: Set your own time using hours and minutes inputs
 - **10 Themes**: Including Ocean Deep, Graphite Glow, Paper Fresh, Pumpkin Night, Holly Berry, Crescent Night, Seafoam Wave, Mochi Pastel, Neo Cyber, and Lantana Bloom
-- **Dynamic Title**: The first word of the title changes randomly on page load and every 5 minutes thereafter
+- **Dynamic Title**: The first word of the title changes randomly on page load and every 1 minute thereafter
 - **Responsive Design**: Works on different screen sizes
 
 ## Theme Features
@@ -19,7 +19,7 @@ A customizable timer application with multiple themes and dynamic title function
 ## Title Randomization
 
 - Title changes from a list of 16 different options
-- Updates automatically every 5 minutes when the site is open
+- Updates automatically every 1 minute when the site is open
 - Configuration stored in external files for easy modification
 
 ## Technical Details
@@ -31,7 +31,7 @@ A customizable timer application with multiple themes and dynamic title function
 ## Files
 
 - `index.html`: Main HTML structure
-- `script.js`: Main JavaScript functionality
+- `script-logic.js`: Main JavaScript functionality
 - `externals/random-title-config.js`: Configuration for random title functionality
 - `externals/random-title-data.md`: Documentation for random title data
 - `externals/prompt-list.md`: Development prompt list

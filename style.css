@@ -2,7 +2,7 @@
 
 /* All CSS stays within the HTML file for simplicity */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@600&family=Audiowide&family=Exo+2:wght@400;60&family=Rajdhani:wght@600&family=Sora:wght@400;600&family=Poppins:wght@400;600&family=Inter:wght@400;600&family=Nosifer&family=Creepster&family=Playfair+Display:wght@700&family=Nunito:wght@400;700&family=El+Messiri:wght@600&family=Cairo:wght@400;700&family=Questrial&family=Rubik:wght@400;600&family=Baloo+2:wght@700&family=Orbitron:wght@700&family=Comfortaa:wght@700&family=Nunito+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;60&family=Poppins:wght@400;600&family=Questrial&family=Rubik:wght@400;600&family=Baloo+2:wght@700&family=Orbitron:wght@70&family=Comfortaa:wght@700&family=Nunito+Sans:wght@400;700&display=swap');
 
 body {
     background-color: #2c3e50;
@@ -129,7 +129,8 @@ button:active {
     position: absolute;
     top: 60px;
     right: 15px;
-    background-color: var(--surface);
+    background-color: #34495e; /* Fixed Ocean Deep surface color */
+    color: #ecf0f1; /* Fixed Ocean Deep text color */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0.3);
     width: 220px;
@@ -139,7 +140,7 @@ button:active {
     visibility: hidden;
     transition: all 0.3s ease;
     z-index: 99;
-    border: 1px solid var(--border);
+    border: 1px solid #3b4c60; /* Fixed Ocean Deep border color */
 }
 
 .theme-dropdown.show {
@@ -152,20 +153,20 @@ button:active {
     padding: 12px 15px;
     cursor: pointer;
     transition: background-color 0.2s;
-    border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
-    font-size: 0.9rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--text); /* Ensure text color is applied */
-}
+    border-bottom: 1px solid color-mix(in srgb, #ecf0f1 10%, transparent); /* Fixed Ocean Deep text color */
+         font-size: 0.9rem;
+         white-space: nowrap;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         color: #ecf0f1; /* Fixed Ocean Deep text color */
+         }
 
 .theme-option:last-child {
     border-bottom: none;
 }
 
 .theme-option:hover {
-    background-color: color-mix(in srgb, var(--primary) 20%, transparent);
+    background-color: color-mix(in srgb, #1abc9c 20%, transparent); /* Fixed Ocean Deep primary color */
 }
 
 /* Theme CSS variables (from ChatGPT's suggestions) */
@@ -182,8 +183,8 @@ button:active {
     --danger: #f55f5f;
     --border: #3b4c60;
     --display-font: 'Roboto Mono', monospace;
-    --ui-font: 'Roboto Mono', monospace;
-}
+        --ui-font: 'Roboto Mono', monospace;
+    }
 
 /* Ocean Deep Theme (Current) */
 [data-theme="ocean-deep"] {
@@ -198,8 +199,8 @@ button:active {
     --warning: #f5a623;
     --danger: #f55f5f;
     --border: #3b4c60;
-    --display-font: 'Audiowide', system-ui;
-    --ui-font: 'Exo 2', system-ui;
+    --display-font: 'Roboto Mono', monospace;
+        --ui-font: 'Roboto Mono', monospace;
 }
 
 /* Graphite Glow Theme (Recommended) */
@@ -215,8 +216,8 @@ button:active {
     --warning: #F59E0B;
     --danger: #EF4444;
     --border: #2A2F36;
-    --display-font: 'Rajdhani', system-ui;
-    --ui-font: 'Sora', system-ui;
+    --display-font: 'Roboto Mono', monospace;
+        --ui-font: 'Roboto Mono', monospace;
 }
 
 /* Paper Fresh Theme (Light) */
@@ -232,8 +233,8 @@ button:active {
     --warning: #D97706;
     --danger: #DC2626;
     --border: #E5E7EB;
-    --display-font: 'Poppins', system-ui;
-    --ui-font: 'Inter', system-ui;
+    --display-font: 'Roboto Mono', monospace;
+        --ui-font: 'Roboto Mono', monospace;
 }
 
 /* Pumpkin Night Theme (Halloween) */
@@ -249,8 +250,8 @@ button:active {
     --warning: #F59E0B;
     --danger: #FF3B3B;
     --border: #2A1A35;
-    --display-font: 'Nosifer', system-ui; /* dripping-blood look */
-    --ui-font: 'Inter', system-ui;
+    --display-font: 'Roboto Mono', monospace;
+        --ui-font: 'Roboto Mono', monospace;
 }
 
 /* Holly Berry Theme (Christmas) */
@@ -266,8 +267,8 @@ button:active {
     --warning: #FBBF24;
     --danger: #EF4444;
     --border: #1F4D34;
-    --display-font: 'Playfair Display', system-ui;
-    --ui-font: 'Nunito', system-ui;
+    --display-font: 'Roboto Mono', monospace;
+        --ui-font: 'Roboto Mono', monospace;
 }
 
 /* Crescent Night Theme (Ramadhan) */
@@ -283,8 +284,8 @@ button:active {
     --warning: #F59E0B;
     --danger: #EF4444;
     --border: #1B2A4A;
-    --display-font: 'El Messiri', system-ui;
-    --ui-font: 'Cairo', system-ui;
+    --display-font: 'Roboto Mono', monospace;
+        --ui-font: 'Roboto Mono', monospace;
 }
 
 /* Seafoam Wave Theme (Ocean) */
@@ -321,24 +322,12 @@ button:active {
     --ui-font: 'Poppins', system-ui;
 }
 
-/* Enhanced Mochi Pastel Theme for better contrast in dropdown menu */
-[data-theme="mochi-pastel"] .theme-dropdown {
-    background-color: #F0F0FF !important;  /* Slightly darker background for dropdown */
-}
-
-[data-theme="mochi-pastel"] .theme-option {
-    color: #1F2937 !important;      /* Dark text for options */
-}
-
-[data-theme="mochi-pastel"] .theme-option:hover {
-    background-color: #E6E6FF !important;  /* Visible hover state */
-}
 
 /* Neo Cyber Theme (Cyberpunk) */
 [data-theme="neo-cyber"] {
     --bg: #070314;
     --surface: #0D0A1A;
-    --text: #EDEAFF;
+    --text: #d87fdb;
     --muted: #BDB8E6;
     --digit: #FFFFFF;
     --primary: #9DFF00;

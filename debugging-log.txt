@@ -1,0 +1,81 @@
+# Debugging Log for PENGENBUAT TIMER
+
+## Date: 2025-11-21
+## Time: 12:00-13:10 (UTC+7)
+
+## Initial Status
+- Task: Execute prompts from prompt-list.md one at a time
+- Starting with 5 unfinished prompts in the list
+
+## Prompt 1: Theme Selector Text Color Consistency
+### Issue: Text color in theme selector not consistent with main window
+### Analysis: 
+- The .theme-dropdown element was using CSS variables but didn't have explicit color property
+- Border separators were using hardcoded #ecf0f1 instead of theme variables
+- Hover effects were using hardcoded colors instead of theme variables
+### Solution:
+- Added color: var(--text) to .theme-dropdown class
+- Changed border-bottom to use color-mix(in srgb, var(--text) 10%, transparent)
+- Updated hover effect to use theme-appropriate color
+
+### Later revision based on user feedback:
+- Removed all dynamic CSS variable formatting
+- Applied fixed "Ocean Deep" theme colors to all theme selector elements:
+  - .theme-dropdown: background #34495e, text #ecf0f1, border #3b4c60
+  - .theme-option: text #ecf0f1, separator based on fixed color
+  - Hover effect: based on fixed color #1abc9c
+
+## Prompt 2: Font Check in styles.css
+### Issue: Check if fonts are functioning, remove unused ones
+### Analysis:
+- Found font import: Roboto Mono (used in body, buttons, inputs)
+- Found font import with multiple fonts: Exo 2, Poppins, Questrial, Rubik, Baloo 2, Orbitron, Comfortaa, Nunito Sans
+- Chivo Mono and Nunito were imported but not used anywhere
+### Solution:
+- Removed unused fonts (Chivo Mono and Nunito) from the import
+
+## Prompt 3: Random Title Configuration
+### Issue: Ensure random title functionality works according to random-title-config.js
+### Analysis:
+- random-title-config.js contains possible titles and update interval
+- script-logic.js uses this configuration properly
+- The functionality was already implemented correctly
+### Solution:
+- Verified the implementation was working properly
+
+## Prompt 4: Title Change Every Minute
+### Issue: Check if title changes every minute whether counting or not
+### Analysis:
+- Found that titles were changing every 5 minutes (300000ms) based on config
+- setInterval(updateRandomTitle, updateInterval) was implemented correctly
+### Solution:
+- Changed default interval from 300000ms (5 minutes) to 60000ms (1 minute)
+
+## Prompt 5: Redundancy Check
+### Issue: Find redundant code/components
+### Analysis:
+- Found redundant script.js file with only comments
+- Found backup file externals/BACKUPS/random-title-config.js with identical content
+- Found outdated documentation random-title-data.md not used by app
+- Found "(Current)" text issue in theme selector (already fixed in previous work)
+### Solution:
+- Reported all redundancies to user
+
+## Additional Issues Discovered and Fixed:
+### Theme Selector Conditional Formatting
+- Found that theme selector was using CSS variables that changed with active theme
+- Each option was using different colors based on current theme
+- User requested to remove all dynamic formatting
+- Applied fixed "Ocean Deep" theme colors to all theme selector elements
+
+### Hover Effect Consistency
+- Hover effect was using hardcoded color instead of theme-appropriate color
+- Fixed to use theme-based color initially, then fixed to use fixed color per user request
+
+## Final Status
+- All 5 prompts from prompt-list.md completed
+- Theme selector now uses fixed formatting with consistent colors
+- Font imports cleaned up to remove unused fonts
+- Title changes every minute as requested
+- Redundant files identified
+- CSS variables removed from theme selector as per user request

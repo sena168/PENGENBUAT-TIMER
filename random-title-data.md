@@ -1,11 +1,13 @@
 # Random Title Data
 
 ## Purpose
+
 This file contains the data and configuration for the randomly changing title feature.
 
 ## Possible Title Words
+
 - PENGENBUAT
-- RASA-YANGPERNAHADA
+- RASA-YANGPERNAH-ADA
 - SEMENJAK-DULUKALA
 - PENGENTAPI-BELUMKESAMPAIAN
 - INILAH
@@ -20,8 +22,10 @@ This file contains the data and configuration for the randomly changing title fe
 - KALAU-INI
 - TIMERNYA
 - BEGITULAH
+-
 
 ## Configuration
+
 - Update interval: 300000 milliseconds (5 minutes)
 - Format: [Random Word] TIMER
 - Default: PENGENBUAT TIMER
